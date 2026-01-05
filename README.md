@@ -8,7 +8,7 @@ This project is designed as a **portfolio-ready dashboard** suitable for small t
 
 ## 🚀 Live Demo
 
-https://task-manager-beryl-psi.vercel.app/
+https://admin-dashboard-ui-five.vercel.app/
 
 ---
 
@@ -70,7 +70,7 @@ src/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/task-manager.git
+git clone https://github.com/Saktra007/Admin_Dashboard_UI.git
 ```
 
 2. Navigate to the project folder
