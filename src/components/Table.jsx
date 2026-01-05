@@ -10,8 +10,8 @@ const Table = ({
   setSelectedUser,
 }) => {
   return (
-    <div className="col-span-1 md:col-span-2 lg:col-span-4 md:h-[300px] h-[300px] overflow-y-scroll">
-      <table className=" w-full bg-white border dark:border-gray-700 rounded-lg shadow mt-6">
+    <div className="col-span-1 md:col-span-2 lg:col-span-4 md:h-[400px] h-[300px] overflow-y-scroll border-2 rounded-md ">
+      <table className=" w-full bg-white border dark:border-gray-700 rounded-lg shadow">
         <thead className="bg-gray-200 dark:bg-slate-800 text-black dark:text-white">
           <tr>
             <th className="border px-4 py-2">Name</th>

@@ -59,7 +59,7 @@ const App = () => {
     else document.documentElement.classList.remove("dark");
   }, [isDarkMode]);
   return (
-    <div className="w-full max-md:h flex mx-auto shadow-lg bg-white text-black dark:text-white dark:bg-slate-500 transition-colors duration-300">
+    <div className="w-full h-screen max-lg:h-full flex mx-auto shadow-lg bg-white text-black dark:text-white dark:bg-slate-500 transition-colors duration-300">
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Topbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />

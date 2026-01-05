@@ -1,27 +1,31 @@
 # 📊 Admin Dashboard UI (React + TailwindCSS)
 
-A modern and responsive **Admin Dashboard** built with **React** and **Tailwind CSS**, featuring user management (CRUD), dark mode, search & filter, and persistent data using LocalStorage.
+![React](https://img.shields.io/badge/React-18-blue)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC)
+![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-This project is designed as a **portfolio-ready dashboard** suitable for small to medium web applications.
+A modern and responsive **Admin Dashboard UI** built with **React** and **Tailwind CSS**.  
+This dashboard focuses on **user management, clean UI, and real-world usability**, making it ideal for small to medium web applications.
 
 ---
 
 ## 🚀 Live Demo
 
-https://admin-dashboard-ui-five.vercel.app/
+🔗 https://admin-dashboard-ui-five.vercel.app/
 
 ---
 
 ## ✨ Features
 
-- 📋 User Management (Add, Edit, Delete)
+- 📋 User Management (Add / Edit / Delete)
 - 🔍 Search users by name or email
 - 🏷️ Filter users by status (All / Active / Inactive)
 - 🌙 Dark Mode with LocalStorage persistence
 - 💾 Data persistence using LocalStorage
 - 📊 Dashboard statistics cards
 - 🧩 Modular & reusable React components
-- 📱 Fully responsive design (Desktop & Mobile)
+- 📱 Fully responsive (Desktop & Mobile)
 
 ---
 
@@ -35,7 +39,13 @@ https://admin-dashboard-ui-five.vercel.app/
 
 ---
 
-## 📂 Project Structure
+## 📸 Screenshots
+
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+
+---
 
 ```txt
 src/
@@ -61,16 +71,19 @@ src/
 │
 ├── App.jsx
 └── main.jsx
-```
+
 
 ---
 
 ## ⚙️ Installation & Setup
 
+
+```
+
 1. Clone the repository
 
 ```bash
-git clone https://github.com/Saktra007/Admin_Dashboard_UI.git
+git clone https://github.com/Saktra007/Task_Manager.git
 ```
 
 2. Navigate to the project folder
