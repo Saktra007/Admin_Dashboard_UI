@@ -41,9 +41,9 @@ This dashboard focuses on **user management, clean UI, and real-world usability*
 
 ## 📸 Screenshots
 
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+![Dashboard Light Mode](image.png)
+![Dashboard Dark Mode](image-1.png)
+![User Management Modal](image-2.png)
 
 ---
 
