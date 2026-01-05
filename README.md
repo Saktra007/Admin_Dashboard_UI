@@ -81,13 +81,14 @@ src/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/Saktra007/Task_Manager.git
+git clone https://github.com/Saktra007/Admin_Dashboard_UI.git
 ```
 
 2. Navigate to the project folder
 
 ```bash
-cd task-manager
+cd Admin_Dashboard_UI
+
 ```
 
 3. Install dependencies
