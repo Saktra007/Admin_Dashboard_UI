@@ -1,63 +1,48 @@
 import React from "react";
-import StatCard from "../components/StatCard";
-import Table from "../components/Table";
-import { DollarSign, ShoppingCart, Users } from "lucide-react";
-import UserModal from "../components/UserModal";
-import FilterBar from "../components/FilterBar";
-const Dashboard = ({
-  selectedUser,
-  setSelectedUser,
-  isEditOpen,
-  setIsEditOpen,
-  setFilterStatus,
-  setSearchTerm,
-  searchTerm,
-  filterusers,
-  filterStatus,
-  userData,
-  onDeleteUser,
-  onEditUser,
-  isModalOpen,
-  setIsModalOpen,
-  addUser,
-}) => {
+import { useUsers } from "../hooks/useUsers";
+import { StatCard } from "../components/ui";
+import { Clock, User, UserCheck, UserMinus } from "lucide-react";
+
+const Dashboard = () => {
+  const { allUsers } = useUsers();
+
+  const total = allUsers.length;
+  const active = allUsers.filter((u) => u.status === "Active").length;
+  const pending = allUsers.filter((u) => u.status === "Pending").length;
+
   return (
-    <div className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <StatCard
-        title="Total Users"
-        value={userData.length}
-        icon={<Users size={24} />}
-      />
-      <StatCard
-        title="Total Sales"
-        value="$56,789"
-        icon={<DollarSign size={24} />}
-      />
-      <StatCard
-        title="New Orders"
-        value={userData.filter((user) => user.status === "Active").length}
-        icon={<ShoppingCart size={24} />}
-      />
-      <StatCard title="Pending Reviews" value="45" icon="📝" />
-      <FilterBar
-        setIsModalOpen={setIsModalOpen}
-        setFilterStatus={setFilterStatus}
-        setSearchTerm={setSearchTerm}
-        searchTerm={searchTerm}
-        filterStatus={filterStatus}
-      />
-      {isModalOpen && (
-        <UserModal setIsModalOpen={setIsModalOpen} addUser={addUser} />
-      )}
-      <Table
-        selectedUser={selectedUser}
-        setSelectedUser={setSelectedUser}
-        isEditOpen={isEditOpen}
-        setIsEditOpen={setIsEditOpen}
-        filterusers={filterusers}
-        onDeleteUser={onDeleteUser}
-        onEditUser={onEditUser}
-      />
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-6 dark:text-white">
+        Dashboard Overview
+      </h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatCard
+          title="Total Users"
+          value={total}
+          icon={<User />}
+          color="blue"
+          trend="+12% "
+        />
+        <StatCard
+          title="Acitve Users"
+          value={active}
+          icon={<UserCheck />}
+          color="green"
+          trend="+5% "
+        />
+        <StatCard
+          title="Pending"
+          value={pending}
+          icon={<Clock />}
+          color="orange"
+        />
+        <StatCard
+          title="Inactive"
+          value={total - active - pending}
+          icon={<UserMinus />}
+          color="purple"
+        />
+      </div>
     </div>
   );
 };
