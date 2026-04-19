@@ -1,22 +1,24 @@
-import Dashboard from "./pages/Dashboard.jsx";
 import { UserProvider } from "./context/UserContext.jsx";
-import Users from "./pages/Users.jsx";
-import { Route, Routes } from "react-router-dom";
-import Layout from "./components/layout/Layout.jsx";
 import { ThemeProvider } from "./context/ThemeContext.jsx";
+import { RouterProvider } from "react-router-dom";
+import routes from "./routes.jsx";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "./context/AuthContext.jsx";
 const App = () => {
   return (
-    <ThemeProvider>
-      <UserProvider>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/Dashboard" element={<Dashboard />} />
-            <Route path="/users" element={<Users />} />
-          </Route>
-        </Routes>
-      </UserProvider>
-    </ThemeProvider>
+    <>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
+      <ThemeProvider>
+        <AuthProvider>
+          <UserProvider>
+            <RouterProvider router={routes} />
+          </UserProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </>
   );
 };
 
