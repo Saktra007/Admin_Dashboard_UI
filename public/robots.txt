@@ -1,0 +1,11 @@
+# https://www.robotstxt.org/robotstxt.html 
+
+User-agent: *
+Allow: /
+
+Disallow: /login
+Disallow: /register
+Disallow: /dashboard
+Disallow: /users
+
+Sitemap: https://zenith-dash.vercel.app/sitemap.xml
