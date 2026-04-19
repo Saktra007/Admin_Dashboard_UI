@@ -1,122 +1,192 @@
-import { Mail, User } from "lucide-react";
-import React, { useEffect, useState } from "react";
-const UserForm = ({ initialData, onSubmit, onCancel }) => {
+import { useEffect, useMemo, useState } from "react";
+import { Button, Input, Select } from "../ui";
+import { Hash, Mail, Save, Shield, User } from "lucide-react";
+import AvatarUpload from "../ui/AvatarUpload";
+
+const UserForm = ({ initialData, onSubmit, onCancel, loading }) => {
   const [formData, setFormData] = useState({
-    name: "",
+    first_name: "",
+    last_name: "",
     email: "",
-    status: "Active",
+    role: "",
+    status: "",
   });
+  const [errors, setErrors] = useState({});
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleAvatarChange = (file) => {
+    setSelectedFile(file);
+  };
 
   useEffect(() => {
     if (initialData) {
       setFormData({
-        name: initialData.name,
-        email: initialData.email,
-        status: initialData.status,
+        first_name: initialData.first_name || "",
+        last_name: initialData.last_name || "",
+        email: initialData.email || "",
+        role: initialData.role || "user",
+        status: initialData.status || "Active",
       });
+      setSelectedFile(null);
     } else {
       setFormData({
-        name: "",
+        first_name: "",
+        last_name: "",
         email: "",
+        role: "user",
         status: "Active",
       });
+      setSelectedFile(null);
     }
+    setErrors({});
   }, [initialData]);
 
-  const handleChange = (e) => {
+  const RoleOptions = useMemo(
+    () => [
+      { value: "user", label: "User / Member" },
+      { value: "editor", label: "Editor / Manager" },
+      { value: "admin", label: "Administrator" },
+    ],
+    [],
+  );
+
+  const StatusOptions = useMemo(
+    () => [
+      { value: "Active", label: "Active" },
+      { value: "Pending", label: "Pending" },
+      { value: "Inactive", label: "Inactive" },
+    ],
+    [],
+  );
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: "" }));
+    }
+  };
+
+  const validateForm = () => {
+    let newErrors = {};
+    if (!formData.first_name.trim())
+      newErrors.first_name = "First name is required";
+    if (!formData.last_name.trim())
+      newErrors.last_name = "Last name is required";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email format is invalid";
+    }
+
+    if (!formData.role) newErrors.role = "Please assign a role";
+    if (!formData.status) newErrors.status = "Please select a status";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSelectChange = (name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+
+    if (validateForm()) {
+      onSubmit({
+        ...formData,
+        avatar: selectedFile,
+        first_name: formData.first_name.trim(),
+        last_name: formData.last_name.trim(),
+        email: formData.email.trim().toLowerCase(),
+      });
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label
-          htmlFor="name"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5"
-        >
-          Full Name
-        </label>
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <User className="h-4 w-4 text-gray-400" />
-          </div>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            value={formData.name}
-            onChange={handleChange}
-            className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-sky-500 outline-none transition-all"
-            placeholder="John Doe"
-            required
-          />
-        </div>
+    <form onSubmit={handleSubmit} className="space-y-5">
+      {/* Avatar Section */}
+      <AvatarUpload
+        onFileSelect={handleAvatarChange}
+        initialAvatar={initialData?.avatar}
+      />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Input
+          name="first_name"
+          label="First Name"
+          placeholder="Ex: John"
+          icon={User}
+          value={formData.first_name}
+          onChange={handleInputChange}
+          error={errors.first_name}
+          className="!py-3.5"
+        />
+        <Input
+          name="last_name"
+          label="Last Name"
+          placeholder="Ex: Doe"
+          icon={User}
+          value={formData.last_name}
+          onChange={handleInputChange}
+          error={errors.last_name}
+          className="!py-3.5"
+        />
       </div>
-      <div>
-        <label
-          htmlFor="email"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5"
-        >
-          Email Address
-        </label>
-        <div className="relative">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-            <Mail className="h-4 w-4 text-gray-400" />
-          </div>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="block w-full pl-10 px-3 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-sky-500 outline-none transition-all"
-            placeholder="example@mail.com"
-            required
-          />
-        </div>
-      </div>
-      <div>
-        <label
-          htmlFor="status"
-          className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-1.5"
-        >
-          Status
-        </label>
-        <select
-          name="status"
-          id="status"
+      <Input
+        label="Email Address"
+        type="email"
+        name="email"
+        placeholder="john.doe@example.com"
+        icon={Mail}
+        value={formData.email}
+        onChange={handleInputChange}
+        error={errors.email}
+        className="!py-3.5"
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Select
+          label="Assign Role"
+          icon={Shield}
+          value={formData.role}
+          onChange={(val) => handleSelectChange("role", val)}
+          options={RoleOptions}
+          error={errors.role}
+        />
+        <Select
+          label="Account Status"
+          icon={Hash}
           value={formData.status}
-          onChange={handleChange}
-          className="w-full px-3 py-2 border rounded-md dark:bg-slate-700 dark:border-slate-600 focus:ring-2 focus:ring-sky-500 outline-none cursor-pointer"
-        >
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-          <option value="Pending">Pending</option>
-        </select>
+          onChange={(val) => handleSelectChange("status", val)}
+          options={StatusOptions}
+          error={errors.status}
+        />
       </div>
-      <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-700 mt-6">
-        <button
+
+      {/* Action Buttons */}
+      <div className="flex items-center justify-end gap-3 pt-6 border-t border-slate-100 dark:border-slate-800/50">
+        <Button
           type="button"
+          variant="ghost"
           onClick={onCancel}
-          className="px-5 py-2.5 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+          disabled={loading}
+          className="uppercase tracking-widest text-xs font-black"
         >
-          Cancel
-        </button>
-        <button
+          Discard
+        </Button>
+        <Button
           type="submit"
-          className="px-6 py-2.5 text-sm font-medium text-white bg-sky-500 hover:bg-sky-600 rounded-lg shadow-lg shadow-sky-500/20 transition-colors active:scale-95"
+          variant={initialData ? "success" : "primary"}
+          icon={Save}
+          isLoading={loading}
+          className="uppercase tracking-widest text-xs font-black"
         >
-          {initialData ? "Save Changes" : "Create User"}
-        </button>
+          {initialData ? "Save Changes" : "Create Member"}
+        </Button>
       </div>
     </form>
   );
 };
-
 export default UserForm;
