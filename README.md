@@ -1,77 +1,59 @@
-# 📊 Admin Dashboard UI (React + TailwindCSS)
+# 🚀 Zenith Dash | Premium MERN Admin Dashboard
 
 ![React](https://img.shields.io/badge/React-18-blue)
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-61DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-MERN-47A248)
 ![Vercel](https://img.shields.io/badge/Deployed-Vercel-black)
-![License](https://img.shields.io/badge/License-MIT-green)
 
-A modern and responsive **Admin Dashboard UI** built with **React** and **Tailwind CSS**.  
-This dashboard focuses on **user management, clean UI, and real-world usability**, making it ideal for small to medium web applications.
+**Zenith Dash** is a professional-grade user management and analytics dashboard. It evolves from a simple UI into a full-stack **MERN** application, featuring modern **Glassmorphism** design, fluid animations, and real-time backend integration.
 
 ---
 
 ## 🚀 Live Demo
 
-🔗 https://admin-dashboard-ui-five.vercel.app/
+🔗 [zenith-dash.vercel.app](https://zenith-dash.vercel.app/)
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- 📋 User Management (Add / Edit / Delete)
-- 🔍 Search users by name or email
-- 🏷️ Filter users by status (All / Active / Inactive)
-- 🌙 Dark Mode with LocalStorage persistence
-- 💾 Data persistence using LocalStorage
-- 📊 Dashboard statistics cards
-- 🧩 Modular & reusable React components
-- 📱 Fully responsive (Desktop & Mobile)
-
----
-
-## 🛠️ Built With
-
-- **React** (Hooks: useState, useEffect, useMemo)
-- **Tailwind CSS**
-- **Lucide React Icons**
-- **JavaScript (ES6+)**
-- **LocalStorage API**
+- **💎 Premium Glassmorphism UI**: High-fidelity interface using `backdrop-blur`, translucent surfaces, and vibrant mesh gradients.
+- **📊 Advanced Analytics**: Real-time data visualization using **ApexCharts** and dynamic stat cards with trend indicators.
+- **🔐 Secure Authentication**: Full authentication flow including Login, Signup (with Avatar upload), and Protected Routes.
+- **⚡ System Intelligence**: Custom logic that analyzes user creation patterns to detect peak activity hours and suggest optimal maintenance windows.
+- **🌓 Adaptive Theme**: Fully optimized Dark and Light modes with smooth transitions.
+- **📱 Responsive & Performant**: Mobile-first design built with **Tailwind CSS** and optimized for "Speed Geek" approved performance.
+- **✨ Motion-Rich Experience**: Smooth transitions and interactive elements powered by **Framer Motion**.
 
 ---
 
-## 📸 Screenshots
+## 🛠️ Tech Stack
 
-![Dashboard Light Mode](image.png)
-![Dashboard Dark Mode](image-1.png)
-![User Management Modal](image-2.png)
+- **React.js**: Functional components with Hooks & Context API.
+- **Tailwind CSS**: Utility-first CSS for the modern Glassmorphism UI.
+- **Framer Motion**: For production-ready animations and page transitions.
+- **ApexCharts**: Interactive SVG charts for data density and status breakdown.
+- **Lucide React**: Clean and consistent iconography.
 
 ---
+
+## 📂 Project Structure
 
 ```txt
 src/
-├── assets/
-│   ├── Logo.png
-│   └── Profile.png
-│
 ├── components/
-│   ├── DarkModeToggle.jsx
-│   ├── Sidebar.jsx
-│   ├── Topbar.jsx
-│   ├── StatCard.jsx
-│   ├── Table.jsx
-│   ├── FilterBar.jsx
-│   ├── UserModal.jsx
-│   └── EditUserModal.jsx
-│
-├── data/
-│   └── users.js
-│
-├── pages/
-│   └── Dashboard.jsx
-│
-├── App.jsx
-└── main.jsx
-
+│   ├── auth/          # Login, Register, ProtectedRoute
+│   ├── layout/        # Sidebar, Topbar, Main Layout
+│   ├── Dashboard/     # StatCard, Charts, Heatmap, TipCard
+│   ├── ui/            # Reusable components (Buttons, Modals, Inputs)
+│   └── users/         # User table, filters, and profile forms
+├── pages/             # Page views (Dashboard, Users, Auth pages)
+├── services/          # API logic (Axios instance, user.service)
+├── context/           # Global states (Auth, Theme, User)
+├── hooks/             # Custom hooks (useAuth, useUsers, useTheme)
+├── utils/             # Helpers (PDF export, toast notifications)
+└── routes.jsx         # Centralized routing configuration
 ```
 
 ---
@@ -81,13 +63,13 @@ src/
 1. Clone the repository
 
 ```bash
-git clone https://github.com/Saktra007/Admin_Dashboard_UI.git
+git clone [https://github.com/Saktra007/Zenith_Dash_MERN.git](https://github.com/Saktra007/Zenith_Dash_MERN.git)
 ```
 
 2. Navigate to the project folder
 
 ```bash
-cd Admin_Dashboard_UI
+cd Zenith_Dash_MERN
 
 ```
 
@@ -101,4 +83,27 @@ npm install
 
 ```bash
 npm run dev
+```
+
+---
+
+## 👨‍💻 Developed By
+
+**Saktra C.**
+_Professional Frontend Developer & Freelancer based in Phnom Penh._
+_Specializing in React, Tailwind CSS, and Modern UI/UX Trends._
+
+---
+
+## 📜 License
+
+This project is for personal portfolio use. All rights reserved.
+
+---
+
+> [!IMPORTANT]
+> This project follows a **Clean Code** and **Modular Architecture** approach, ensuring the system remains scalable, maintainable, and high-performing.
+
+```
+
 ```
