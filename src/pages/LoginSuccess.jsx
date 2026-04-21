@@ -1,4 +1,4 @@
-import  { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import { LoadingScreen } from "../components/ui";
@@ -19,10 +19,10 @@ const LoginSuccess = () => {
       if (setCurrentUser) setCurrentUser(userData);
 
       setTimeout(() => {
-        window.location.href = "/dashboard";
+        navigate("/dashboard");
       }, 500);
     } else {
-      navigate("/login");
+      navigate("/login?error=no_token");
     }
   }, [searchParams, navigate, setCurrentUser]);
 
