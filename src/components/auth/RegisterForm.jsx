@@ -113,7 +113,7 @@ const RegisterForm = () => {
       const res = await userService.signup(data);
 
       if (res && res.success) {
-        const userData = res.data || res;
+        const userData = res.data;
 
         registerSuccess(userData);
         setFormData({});
