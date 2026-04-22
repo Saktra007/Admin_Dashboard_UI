@@ -10,7 +10,7 @@ const Topbar = ({ toggleSidebar }) => {
   const avatarUrl = currentUser?.avatar
     ? currentUser.avatar.startsWith("http")
       ? currentUser.avatar
-      : `http://localhost:5000/${currentUser.avatar}`
+      : `https://zenith-backend-jdhp.onrender.com/${currentUser.avatar}`
     : `https://ui-avatars.com/api/?name=${encodeURIComponent(currentUser?.full_name || "Admin")}&background=6366f1&color=fff&bold=true`;
 
   return (
