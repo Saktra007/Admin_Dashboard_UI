@@ -11,9 +11,16 @@ const LoginSuccess = () => {
   useEffect(() => {
     const token = searchParams.get("token");
     if (token) {
-      localStorage.setItem("token", token);
+      const userData = {
+        token,
+        first_name: searchParams.get("first_name"),
+        last_name: searchParams.get("last_name"),
+        avatar: searchParams.get("avatar"),
+        email: searchParams.get("email"),
+        role: searchParams.get("role"),
+      };
 
-      const userData = { token };
+      localStorage.setItem("token", token);
       localStorage.setItem("userInfo", JSON.stringify(userData));
 
       if (setCurrentUser) setCurrentUser(userData);
