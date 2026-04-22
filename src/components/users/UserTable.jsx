@@ -17,6 +17,7 @@ const UserTable = ({
   onDelete,
   onAddClick,
   onView,
+  searchTerm = "",
 }) => {
   const [sortConfig, setSortConfig] = useState({
     key: "first_name",
@@ -94,6 +95,14 @@ const UserTable = ({
     );
 
   if (users.length === 0 && !loading) {
+    if (searchTerm) {
+      return (
+        <EmptyState
+          title="Search Not Found"
+          subtitle={`We couldn't find any user matching "${searchTerm}". Please try a different identity keyword.`}
+        />
+      );
+    }
     return (
       <EmptyState
         title="No Identities Found"
@@ -187,10 +196,11 @@ const UserTable = ({
                     <div className="flex items-center gap-4">
                       <img
                         src={
-                          user.avatar && user.avatar!=="null"?(user.avatar.startsWith("http")
-                        ?user.avatar:`${import.meta.env.VITE_API_BASE_URL}/upload/${user.avatar}`
-                        ):
-                          `https://ui-avatars.com/api/?name=${user.full_name}&background=0ea5e9&color=fff`
+                          user.avatar && user.avatar !== "null"
+                            ? user.avatar.startsWith("http")
+                              ? user.avatar
+                              : `${import.meta.env.VITE_API_BASE_URL}/upload/${user.avatar}`
+                            : `https://ui-avatars.com/api/?name=${user.full_name}&background=0ea5e9&color=fff`
                         }
                         alt={user.full_name}
                         className="w-11 h-11 rounded-2xl shadow-sm border-2 border-white dark:border-slate-800 object-cover"
