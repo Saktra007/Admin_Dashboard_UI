@@ -7,6 +7,8 @@ const EmptyState = ({
   onAction,
   buttonText,
 }) => {
+  const isSearchEmpty = !buttonText;
+
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -55,7 +57,7 @@ const EmptyState = ({
           {subtitle}
         </p>
       </div>
-      {buttonText && (
+      {buttonText ? (
         <motion.button
           onClick={onAction}
           whileHover={{
@@ -68,26 +70,35 @@ const EmptyState = ({
           {buttonText}
           <ArrowRight className="h-4 w-4 group-hover:translate-x-2 transition-transform duration-300" />
         </motion.button>
+      ) : (
+        <button
+          onClick={() => window.location.reload()}
+          className="text-sky-500 font-bold text-[10px] uppercase tracking-widest mb-8 hover:text-purple-500 cursor-pointer transition-colors"
+        >
+          [ Reset Search Filters ]
+        </button>
       )}
-      <div className="flex flex-col items-center gap-2">
-        <div className="flex gap-1">
-          <span
-            className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-bounce"
-            style={{ animationDelay: "0s" }}
-          ></span>
-          <span
-            className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce"
-            style={{ animationDelay: "0.2s" }}
-          ></span>
-          <span
-            className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-bounce"
-            style={{ animationDelay: "0.4s" }}
-          ></span>
+      {!isSearchEmpty && (
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex gap-1">
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-bounce"
+              style={{ animationDelay: "0s" }}
+            ></span>
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-bounce"
+              style={{ animationDelay: "0.2s" }}
+            ></span>
+            <span
+              className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-bounce"
+              style={{ animationDelay: "0.4s" }}
+            ></span>
+          </div>
+          <p className="text-[9px] text-slate-400 font-black uppercase tracking-[0.2em] opacity-60">
+            Waiting for incoming data...
+          </p>
         </div>
-        <p className="text-[9px] text-slate-400 font-black uppercase tracking-[0.2em] opacity-60">
-          Waiting for incoming data...
-        </p>
-      </div>
+      )}
     </motion.div>
   );
 };
