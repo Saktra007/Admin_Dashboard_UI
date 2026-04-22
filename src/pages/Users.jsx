@@ -13,7 +13,8 @@ import {
 import { Modal, Button } from "../components/ui";
 
 const Users = () => {
-  const { users, loading, addUser, updateUser, deleteUser } = useUsers();
+  const { users, loading, addUser, updateUser, deleteUser, searchTerm } =
+    useUsers();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [isViewOpen, setIsViewOpen] = useState(false);
@@ -128,6 +129,7 @@ const Users = () => {
         onDelete={handleOpenDelete}
         onAddClick={handleOpenAdd}
         onView={handleViewProfile}
+        searchTerm={searchTerm}
       />
 
       {/* Modal Login */}
